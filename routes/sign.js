@@ -113,8 +113,24 @@ router.post('/approve', async (req, res) => {
         const mailOptions = {
           from: process.env.EMAIL_USER,
           to: nextApproverEmail,
-          subject: `Approval Request for PR Number: ${pr_number}`,
-          text: `You have a new PR approval request for PR Number: ${pr_number}.`
+          subject: `Invoice Details for PR Number: ${pr_number}`,
+          text: `Invoice Details:\n
+          PR Number: ${pr_number}\n
+          PR Sent Date: ${pr_sent_date}\n
+          Requestor Email ID: ${requestor_email_id}\n
+          Cost Center: ${cost_center}\n
+          Supplier Name: ${supplier_name}\n
+          Purchase Order Rate Contract: ${purchase_order_rate_contract}\n
+          Project Title: ${project_title}\n
+          Invoice Proforma Amount Requested: ${invoice_proforma_amount_requested}\n
+          Progress Work Completed: ${progress_work_completed}\n
+          Taxes: ${taxes}\n
+          Net Amount Certified: ${net_amount_certified}\n
+          Requestor: ${requestor}\n
+          Budget Controller: ${budget_controller}\n
+          Functional Manager: ${functional_manager}\n
+          Department HOD: ${department_hod}\n
+          MD: ${md}`
         };
         await transporter.sendMail(mailOptions);
       }

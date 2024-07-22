@@ -63,9 +63,6 @@ router.post('/create', async (req, res) => {
     await SignDetails.bulkCreate([
       { pr_number, emp_id: '', sign: '', email: requestor, isapproved: false },
       { pr_number, emp_id: '', sign: '', email: budget_controller, isapproved: false },
-      { pr_number, emp_id: '', sign: '', email: functional_manager, isapproved: false },
-      { pr_number, emp_id: '', sign: '', email: department_hod, isapproved: false },
-      { pr_number, emp_id: '', sign: '', email: md, isapproved: false }
     ]);
 
     // Email content for requestor and budget_controller
