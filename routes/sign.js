@@ -116,21 +116,21 @@ router.post('/approve', async (req, res) => {
           subject: `Invoice Details for PR Number: ${pr_number}`,
           text: `Invoice Details:\n
           PR Number: ${pr_number}\n
-          PR Sent Date: ${pr_sent_date}\n
-          Requestor Email ID: ${requestor_email_id}\n
-          Cost Center: ${cost_center}\n
-          Supplier Name: ${supplier_name}\n
-          Purchase Order Rate Contract: ${purchase_order_rate_contract}\n
-          Project Title: ${project_title}\n
-          Invoice Proforma Amount Requested: ${invoice_proforma_amount_requested}\n
-          Progress Work Completed: ${progress_work_completed}\n
-          Taxes: ${taxes}\n
-          Net Amount Certified: ${net_amount_certified}\n
-          Requestor: ${requestor}\n
-          Budget Controller: ${budget_controller}\n
-          Functional Manager: ${functional_manager}\n
-          Department HOD: ${department_hod}\n
-          MD: ${md}`
+          PR Sent Date: ${invoice.pr_sent_date}\n
+          Requestor Email ID: ${invoice.requestor_email_id}\n
+          Cost Center: ${invoice.cost_center}\n
+          Supplier Name: ${invoice.supplier_name}\n
+          Purchase Order Rate Contract: ${invoice.purchase_order_rate_contract}\n
+          Project Title: ${invoice.project_title}\n
+          Invoice Proforma Amount Requested: ${invoice.invoice_proforma_amount_requested}\n
+          Progress Work Completed: ${invoice.progress_work_completed}\n
+          Taxes: ${invoice.taxes}\n
+          Net Amount Certified: ${invoice.net_amount_certified}\n
+          Requestor: ${invoice.requestor}\n
+          Budget Controller: ${invoice.budget_controller}\n
+          Functional Manager: ${invoice.functional_manager}\n
+          Department HOD: ${invoice.department_hod}\n
+          MD: ${invoice.md}`
         };
         await transporter.sendMail(mailOptions);
       }
@@ -159,7 +159,7 @@ router.get('/invoices', async (req, res) => {
 
     // Fetch all sign details for the given email_id
     const signDetails = await SignDetails.findAll({
-      where: { email: email_id },
+      where: { email: email_id, isapproved: false },
       attributes: ['pr_number'] // Only need pr_number for lookup
     });
 
