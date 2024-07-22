@@ -1,7 +1,7 @@
 
 const sequelize = require('../config/database');
 
-sequelize.sync({ alter: true}) // Use { force: true } to drop existing tables
+sequelize.sync({ force: true}) // Use { force: true } to drop existing tables
   .then(() => {
     console.log('Models synchronized with the database.');
   })

@@ -159,7 +159,7 @@ router.get('/invoices', async (req, res) => {
 
     // Fetch all sign details for the given email_id
     const signDetails = await SignDetails.findAll({
-      where: { email: email_id, isapproved: false },
+      where: { email: email_id, is_approved: false },
       attributes: ['pr_number'] // Only need pr_number for lookup
     });
 
