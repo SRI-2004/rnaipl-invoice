@@ -5,7 +5,7 @@ const SignDetails = require('./sign_details');
 
 
 
-sequelize.sync({ force: true }) 
+sequelize.sync({ alter: true }) 
   .then(() => {
     console.log('Database & tables created!');
   })
